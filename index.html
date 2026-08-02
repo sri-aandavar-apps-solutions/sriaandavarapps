@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Aandavar Apps | Premium Android Development</title>
+    <meta name="description" content="We develop modern Android applications focused on productivity, utilities, finance, AI, and lifestyle experiences.">
+    <meta name="keywords" content="Android Development, App Development, Sri Aandavar Apps, Mobile Apps, Kotlin, Flutter, AI Apps">
+    
+    <!-- SEO Tags -->
+    <link rel="canonical" href="https://sriaandavarapps.com/">
+    <meta property="og:title" content="Sri Aandavar Apps | Premium Android Development">
+    <meta property="og:description" content="Building Smart Android Apps That Make Life Easier">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sriaandavarapps.com/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2563EB">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',
+                        secondary: '#0F172A',
+                        accent: '#06B6D4',
+                        success: '#10B981',
+                        darkBg: '#020617',
+                        lightBg: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-lightBg text-slate-800 dark:bg-darkBg dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Scroll Progress -->
+    <div id="scroll-progress"></div>
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/20 dark:bg-primary/10 blur-[100px] animate-blob"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-accent/20 dark:bg-accent/10 blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-purple-500/20 dark:bg-purple-500/10 blur-[120px] animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header id="header" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent glass dark:border-b dark:border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <span class="text-gradient">Sri Aandavar Apps</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 font-medium">
+                <a href="#home" class="hover:text-primary transition-colors">Home</a>
+                <a href="#about" class="hover:text-primary transition-colors">About</a>
+                <a href="#apps" class="hover:text-primary transition-colors">Apps</a>
+                <a href="#features" class="hover:text-primary transition-colors">Features</a>
+                <a href="#technology" class="hover:text-primary transition-colors">Technology</a>
+                <a href="#faq" class="hover:text-primary transition-colors">FAQ</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden md:flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#apps" class="px-6 py-2.5 rounded-full bg-primary hover:bg-blue-700 text-white font-medium shadow-lg hover:shadow-primary/50 transition-all ripple hover-lift flex items-center gap-2">
+                    <i class="fa-brands fa-google-play"></i> Google Play
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-2xl z-50 relative">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-card border-t border-slate-200 dark:border-white/10 shadow-xl py-6 px-6 flex flex-col gap-4">
+            <a href="#home" class="text-lg font-medium">Home</a>
+            <a href="#about" class="text-lg font-medium">About</a>
+            <a href="#apps" class="text-lg font-medium">Apps</a>
+            <a href="#features" class="text-lg font-medium">Features</a>
+            <a href="#technology" class="text-lg font-medium">Technology</a>
+            <a href="#faq" class="text-lg font-medium">FAQ</a>
+            <a href="#contact" class="text-lg font-medium">Contact</a>
+            <div class="h-px bg-slate-200 dark:bg-white/10 my-2"></div>
+            <a href="#apps" class="w-full text-center px-6 py-3 rounded-xl bg-primary text-white font-medium shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-brands fa-google-play"></i> Get on Google Play
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+        <div class="particles-container">
+            <!-- Generated via CSS but just placeholders -->
+            <div class="particle w-2 h-2 left-[10%] animation-delay-2000"></div>
+            <div class="particle w-3 h-3 left-[30%] animation-delay-4000"></div>
+            <div class="particle w-1.5 h-1.5 left-[60%]"></div>
+            <div class="particle w-4 h-4 left-[80%] animation-delay-2000"></div>
+        </div>
+
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-primary/20 text-sm font-medium text-primary mb-6">
+                    <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                    Premium Android Development
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
+                    Building Smart <br>
+                    <span class="text-gradient">Android Apps</span> <br>
+                    That Make Life Easier
+                </h1>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-lg leading-relaxed">
+                    We develop modern Android applications focused on productivity, utilities, finance, AI, and lifestyle experiences.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#apps" class="px-8 py-4 rounded-xl bg-primary hover:bg-blue-700 text-white font-semibold shadow-lg hover:shadow-primary/50 transition-all hover-lift ripple">
+                        Explore Apps
+                    </a>
+                    <a href="#contact" class="px-8 py-4 rounded-xl glass-card font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all hover-lift">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Graphic -->
+            <div class="relative" data-aos="fade-left">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-20 blur-3xl rounded-full"></div>
+                <div class="relative flex justify-center animate-float">
+                    <!-- Phone Mockup -->
+                    <div class="phone-mockup w-[280px] h-[580px] sm:w-[320px] sm:h-[650px] relative">
+                        <img src="https://images.unsplash.com/photo-1616423640778-28d1b53229bd?auto=format&fit=crop&q=80&w=600" alt="App Screen" class="w-full h-full object-cover">
+                        
+                        <!-- Floating Cards overlay -->
+                        <div class="absolute top-[20%] -left-8 glass-card p-3 rounded-xl flex items-center gap-3 animate-blob">
+                            <div class="w-10 h-10 rounded-full bg-success flex items-center justify-center text-white">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Downloads</p>
+                                <p class="font-bold">100K+</p>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute bottom-[30%] -right-10 glass-card p-3 rounded-xl flex items-center gap-3 animate-blob animation-delay-2000">
+                            <div class="w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center text-white">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Rating</p>
+                                <p class="font-bold">4.8/5.0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wave Separator -->
+        <div class="absolute bottom-0 w-full overflow-hidden leading-none text-white dark:text-darkBg z-10">
+            <svg class="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,121.38,201.5,114.12Z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white dark:bg-darkBg relative z-20" id="stats">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Stat Item -->
+                <div class="text-center p-6 rounded-2xl glass-card hover-lift" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 mx-auto bg-blue-100 dark:bg-blue-900/50 text-primary rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-brands fa-android"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-2"><span class="counter" data-target="10">0</span>+</h3>
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">Published Apps</p>
+                </div>
+                <!-- Stat Item -->
+                <div class="text-center p-6 rounded-2xl glass-card hover-lift" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 mx-auto bg-green-100 dark:bg-green-900/50 text-success rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-download"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-2"><span class="counter" data-target="100">0</span>K+</h3>
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">Downloads</p>
+                </div>
+                <!-- Stat Item -->
+                <div class="text-center p-6 rounded-2xl glass-card hover-lift" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 mx-auto bg-amber-100 dark:bg-amber-900/50 text-amber-500 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-2"><span class="counter" data-target="4.8">0</span>★</h3>
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">Average Rating</p>
+                </div>
+                <!-- Stat Item -->
+                <div class="text-center p-6 rounded-2xl glass-card hover-lift" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 mx-auto bg-purple-100 dark:bg-purple-900/50 text-purple-500 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-2"><span class="counter" data-target="5">0</span>+</h3>
+                    <p class="text-slate-500 dark:text-slate-400 font-medium">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6">Innovating the <span class="text-gradient">Mobile Experience</span></h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                        At Sri Aandavar Apps, we are passionate about building Android applications that solve real-world problems. We blend elegant design with robust engineering to deliver experiences users love.
+                    </p>
+                    
+                    <div class="space-y-6 mt-8">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Our Mission</h4>
+                                <p class="text-slate-600 dark:text-slate-400">To empower individuals and businesses with accessible, high-performance, and beautiful mobile applications.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Our Vision</h4>
+                                <p class="text-slate-600 dark:text-slate-400">To be a globally recognized leader in the Android development space, known for quality and innovation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=400" alt="About Image 1" class="rounded-2xl shadow-xl w-full h-[250px] object-cover hover-lift">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=400" alt="About Image 2" class="rounded-2xl shadow-xl w-full h-[250px] object-cover mt-12 hover-lift">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Features -->
+    <section id="features" class="py-24 bg-slate-50 dark:bg-slate-900/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Why Choose <span class="text-gradient">Us?</span></h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400">We don't just build apps; we build scalable digital solutions designed for performance and engagement.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-primary text-white flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Fast Performance</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Optimized code architecture ensures our apps load instantly and run smoothly on all devices.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-accent text-white flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Modern UI</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Stunning interfaces designed with the latest trends like glassmorphism and smooth micro-animations.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-success text-white flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Secure Apps</h3>
+                    <p class="text-slate-600 dark:text-slate-400">We implement enterprise-grade security protocols to keep user data safe and protected.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Regular Updates</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Continuous monitoring and frequent updates to add features and ensure OS compatibility.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Reliable Support</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Dedicated customer support to resolve issues quickly and listen to user feedback.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="glass-card p-8 rounded-2xl hover-lift group" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-slate-700 to-slate-900 text-white flex items-center justify-center text-2xl mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">High Quality Code</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Clean, scalable, and well-documented codebase following industry best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-16 relative border-t border-b border-slate-200 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8" data-aos="fade-up">
+                <div class="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-primary hover:text-white transition-all cursor-pointer">
+                    <i class="fa-solid fa-brain"></i> <span class="font-medium">AI Apps</span>
+                </div>
+                <div class="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-primary hover:text-white transition-all cursor-pointer">
+                    <i class="fa-solid fa-wallet"></i> <span class="font-medium">Finance</span>
+                </div>
+                <div class="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-primary hover:text-white transition-all cursor-pointer">
+                    <i class="fa-solid fa-mug-hot"></i> <span class="font-medium">Lifestyle</span>
+                </div>
+                <div class="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-primary hover:text-white transition-all cursor-pointer">
+                    <i class="fa-solid fa-chart-line"></i> <span class="font-medium">Productivity</span>
+                </div>
+                <div class="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-primary hover:text-white transition-all cursor-pointer">
+                    <i class="fa-solid fa-graduation-cap"></i> <span class="font-medium">Education</span>
+                </div>
+                <div class="flex items-center gap-2 px-6 py-3 rounded-full glass hover:bg-primary hover:text-white transition-all cursor-pointer">
+                    <i class="fa-solid fa-screwdriver-wrench"></i> <span class="font-medium">Utility</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Apps -->
+    <section id="apps" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12" data-aos="fade-up">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4">Featured <span class="text-gradient">Applications</span></h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400">Discover our top-rated creations on Google Play.</p>
+                </div>
+                <a href="#" class="hidden md:inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+                    View All Apps <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- App Card 1 -->
+                <div class="glass-card rounded-3xl p-6 hover-lift border-t-[4px] border-t-primary" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center text-primary text-3xl shadow-inner">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">TaskMaster AI</h3>
+                            <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Productivity</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Smart task management powered by AI to organize your day efficiently.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex gap-4 text-sm text-slate-500">
+                            <span><i class="fa-solid fa-download mr-1"></i> 50K+</span>
+                            <span><i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.9</span>
+                        </div>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- App Card 2 -->
+                <div class="glass-card rounded-3xl p-6 hover-lift border-t-[4px] border-t-accent" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-cyan-100 flex items-center justify-center text-accent text-3xl shadow-inner">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">SpendTrack</h3>
+                            <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Finance</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Beautiful personal finance tracker with intuitive charts and budgets.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex gap-4 text-sm text-slate-500">
+                            <span><i class="fa-solid fa-download mr-1"></i> 100K+</span>
+                            <span><i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.8</span>
+                        </div>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- App Card 3 -->
+                <div class="glass-card rounded-3xl p-6 hover-lift border-t-[4px] border-t-purple-500" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-500 text-3xl shadow-inner">
+                            <i class="fa-solid fa-dumbbell"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">FitJourney</h3>
+                            <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Lifestyle</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Your daily fitness companion with customized workout plans.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex gap-4 text-sm text-slate-500">
+                            <span><i class="fa-solid fa-download mr-1"></i> 25K+</span>
+                            <span><i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.7</span>
+                        </div>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- App Card 4 -->
+                <div class="glass-card rounded-3xl p-6 hover-lift border-t-[4px] border-t-green-500" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center text-green-600 text-3xl shadow-inner">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">DocScanner Pro</h3>
+                            <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Utility</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Scan, edit, and organize your documents with edge detection.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex gap-4 text-sm text-slate-500">
+                            <span><i class="fa-solid fa-download mr-1"></i> 200K+</span>
+                            <span><i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.6</span>
+                        </div>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- App Card 5 -->
+                <div class="glass-card rounded-3xl p-6 hover-lift border-t-[4px] border-t-amber-500" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 text-3xl shadow-inner">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">LingoLearn</h3>
+                            <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Education</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Learn new languages quickly with bite-sized daily lessons.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex gap-4 text-sm text-slate-500">
+                            <span><i class="fa-solid fa-download mr-1"></i> 15K+</span>
+                            <span><i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.9</span>
+                        </div>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- App Card 6 -->
+                <div class="glass-card rounded-3xl p-6 hover-lift border-t-[4px] border-t-pink-500" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600 text-3xl shadow-inner">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">BeatMaker</h3>
+                            <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Entertainment</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Create stunning music tracks right from your Android device.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex gap-4 text-sm text-slate-500">
+                            <span><i class="fa-solid fa-download mr-1"></i> 75K+</span>
+                            <span><i class="fa-solid fa-star text-amber-400 mr-1"></i> 4.5</span>
+                        </div>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center md:hidden">
+                 <a href="#" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-200 dark:bg-slate-800 font-semibold">
+                    View All Apps <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Screenshots / Carousel -->
+    <section class="py-24 bg-gradient-to-b from-transparent to-slate-50 dark:to-slate-900/50 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Beautiful <span class="text-gradient">Interfaces</span></h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400">Take a sneak peek inside our meticulously designed applications.</p>
+            </div>
+
+            <div class="flex justify-center" data-aos="zoom-in">
+                <div class="phone-mockup w-[280px] h-[580px] sm:w-[320px] sm:h-[650px]">
+                    <!-- Swiper -->
+                    <div class="swiper screenshots-slider w-full h-full">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="https://images.unsplash.com/photo-1616423640778-28d1b53229bd?auto=format&fit=crop&q=80&w=600" alt="Screen 1" class="w-full h-full object-cover">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=600" alt="Screen 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=600" alt="Screen 3" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination swiper-pagination-screenshots bottom-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Our Development <span class="text-gradient">Process</span></h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400">From concept to deployment, we follow a rigorous agile methodology.</p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <div class="timeline-line"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative flex md:justify-end items-center mb-12 w-full pl-12 md:pl-0" data-aos="fade-up">
+                    <div class="absolute left-[8px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-primary border-4 border-white dark:border-darkBg z-10 shadow"></div>
+                    <div class="md:w-5/12 glass-card p-6 rounded-2xl hover-lift text-left">
+                        <span class="text-primary font-bold text-sm mb-2 block">Phase 1</span>
+                        <h4 class="text-xl font-bold mb-2">Research & Planning</h4>
+                        <p class="text-slate-600 dark:text-slate-400">Understanding user needs, market trends, and defining core app functionality.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex md:justify-start items-center mb-12 w-full pl-12 md:pl-0" data-aos="fade-up">
+                    <div class="absolute left-[8px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-accent border-4 border-white dark:border-darkBg z-10 shadow"></div>
+                    <div class="md:w-5/12 glass-card p-6 rounded-2xl hover-lift text-left">
+                        <span class="text-accent font-bold text-sm mb-2 block">Phase 2</span>
+                        <h4 class="text-xl font-bold mb-2">UI/UX Design</h4>
+                        <p class="text-slate-600 dark:text-slate-400">Creating wireframes and high-fidelity prototypes with premium aesthetics.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex md:justify-end items-center mb-12 w-full pl-12 md:pl-0" data-aos="fade-up">
+                    <div class="absolute left-[8px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-purple-500 border-4 border-white dark:border-darkBg z-10 shadow"></div>
+                    <div class="md:w-5/12 glass-card p-6 rounded-2xl hover-lift text-left">
+                        <span class="text-purple-500 font-bold text-sm mb-2 block">Phase 3</span>
+                        <h4 class="text-xl font-bold mb-2">Development</h4>
+                        <p class="text-slate-600 dark:text-slate-400">Writing clean, modular code using modern frameworks and standard practices.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="relative flex md:justify-start items-center mb-12 w-full pl-12 md:pl-0" data-aos="fade-up">
+                    <div class="absolute left-[8px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-amber-500 border-4 border-white dark:border-darkBg z-10 shadow"></div>
+                    <div class="md:w-5/12 glass-card p-6 rounded-2xl hover-lift text-left">
+                        <span class="text-amber-500 font-bold text-sm mb-2 block">Phase 4</span>
+                        <h4 class="text-xl font-bold mb-2">Testing & QA</h4>
+                        <p class="text-slate-600 dark:text-slate-400">Rigorous automated and manual testing to ensure a bug-free experience.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="relative flex md:justify-end items-center w-full pl-12 md:pl-0" data-aos="fade-up">
+                    <div class="absolute left-[8px] md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-success border-4 border-white dark:border-darkBg z-10 shadow"></div>
+                    <div class="md:w-5/12 glass-card p-6 rounded-2xl hover-lift text-left">
+                        <span class="text-success font-bold text-sm mb-2 block">Phase 5</span>
+                        <h4 class="text-xl font-bold mb-2">Launch & Maintenance</h4>
+                        <p class="text-slate-600 dark:text-slate-400">Deploying to Google Play and providing continuous updates and support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies -->
+    <section id="technology" class="py-24 bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Tech <span class="text-gradient">Stack</span></h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400">Powered by the most reliable modern technologies.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto">
+                <!-- Tech Icons -->
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="50">
+                    <i class="fa-brands fa-android text-3xl text-green-500"></i>
+                    <span class="text-xs font-semibold">Android</span>
+                </div>
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fa-brands fa-java text-3xl text-orange-500"></i>
+                    <span class="text-xs font-semibold">Java</span>
+                </div>
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="150">
+                    <i class="fa-solid fa-k text-3xl text-purple-500"></i>
+                    <span class="text-xs font-semibold">Kotlin</span>
+                </div>
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fa-solid fa-f text-3xl text-cyan-400"></i>
+                    <span class="text-xs font-semibold">Flutter</span>
+                </div>
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="250">
+                    <i class="fa-solid fa-fire text-3xl text-amber-500"></i>
+                    <span class="text-xs font-semibold">Firebase</span>
+                </div>
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fa-brands fa-node-js text-3xl text-green-600"></i>
+                    <span class="text-xs font-semibold">Node.js</span>
+                </div>
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="350">
+                    <i class="fa-brands fa-google text-3xl text-blue-500"></i>
+                    <span class="text-xs font-semibold">GCP</span>
+                </div>
+                <div class="glass-card w-24 h-24 rounded-2xl flex flex-col items-center justify-center gap-2 hover-lift cursor-pointer" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fa-brands fa-github text-3xl text-slate-800 dark:text-white"></i>
+                    <span class="text-xs font-semibold">GitHub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">User <span class="text-gradient">Feedback</span></h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400">What users say about our applications.</p>
+            </div>
+
+            <div class="swiper testimonials-slider pb-12" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper-wrapper">
+                    <!-- Review 1 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="glass-card p-8 rounded-3xl h-full flex flex-col">
+                            <div class="flex gap-1 text-amber-400 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-lg italic text-slate-700 dark:text-slate-300 mb-6 flex-grow">"TaskMaster AI completely changed how I organize my work. The interface is buttery smooth and the AI suggestions are spot on."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://i.pravatar.cc/100?img=1" alt="User" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h4 class="font-bold">Sarah Jenkins</h4>
+                                    <p class="text-xs text-slate-500">Google Play User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="glass-card p-8 rounded-3xl h-full flex flex-col">
+                            <div class="flex gap-1 text-amber-400 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-lg italic text-slate-700 dark:text-slate-300 mb-6 flex-grow">"SpendTrack has the most beautiful UI of any finance app I've tried. No ads, just pure functionality and elegant design."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://i.pravatar.cc/100?img=2" alt="User" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h4 class="font-bold">Michael Chen</h4>
+                                    <p class="text-xs text-slate-500">Google Play User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="glass-card p-8 rounded-3xl h-full flex flex-col">
+                            <div class="flex gap-1 text-amber-400 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-lg italic text-slate-700 dark:text-slate-300 mb-6 flex-grow">"DocScanner Pro is my go-to app for university. It rarely crashes and the edge detection is faster than premium alternatives."</p>
+                            <div class="flex items-center gap-4">
+                                <img src="https://i.pravatar.cc/100?img=3" alt="User" class="w-12 h-12 rounded-full object-cover">
+                                <div>
+                                    <h4 class="font-bold">Emily Rossi</h4>
+                                    <p class="text-xs text-slate-500">Google Play User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination swiper-pagination-testimonials"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-slate-50 dark:bg-slate-900/50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Frequently Asked <span class="text-gradient">Questions</span></h2>
+            </div>
+            
+            <div class="space-y-4" data-aos="fade-up">
+                <!-- FAQ 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-8 py-5 text-left font-bold text-lg flex justify-between items-center hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                        Are the apps free?
+                        <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white/30 dark:bg-black/20">
+                        <p class="p-8 pt-2 text-slate-600 dark:text-slate-400">Most of our utility apps are free with unobtrusive ads. We also offer premium, ad-free versions with advanced features via one-time purchases or subscriptions.</p>
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-8 py-5 text-left font-bold text-lg flex justify-between items-center hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                        How often are apps updated?
+                        <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white/30 dark:bg-black/20">
+                        <p class="p-8 pt-2 text-slate-600 dark:text-slate-400">We push regular updates every 2-4 weeks. This includes bug fixes, performance improvements, new features, and compatibility updates for new Android versions.</p>
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-8 py-5 text-left font-bold text-lg flex justify-between items-center hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                        How can I contact support?
+                        <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white/30 dark:bg-black/20">
+                        <p class="p-8 pt-2 text-slate-600 dark:text-slate-400">You can use the contact form below, or email us directly at support@sriaandavarapps.com. We usually respond within 24 hours.</p>
+                    </div>
+                </div>
+                <!-- FAQ 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-8 py-5 text-left font-bold text-lg flex justify-between items-center hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                        How do I report bugs?
+                        <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white/30 dark:bg-black/20">
+                        <p class="p-8 pt-2 text-slate-600 dark:text-slate-400">There is a "Report Bug" option within the settings menu of all our apps. Alternatively, you can email us with screenshots and your device details.</p>
+                    </div>
+                </div>
+                <!-- FAQ 5 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button class="faq-btn w-full px-8 py-5 text-left font-bold text-lg flex justify-between items-center hover:bg-slate-50/50 dark:hover:bg-white/5 transition-colors">
+                        Where are the apps available?
+                        <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white/30 dark:bg-black/20">
+                        <p class="p-8 pt-2 text-slate-600 dark:text-slate-400">Our applications are exclusively available on the Google Play Store for Android devices worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Form -->
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-4">Get in <span class="text-gradient">Touch</span></h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-8">Have a question or want to discuss a project? Drop us a message.</p>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-primary transition-colors">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-primary transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-primary transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-primary hover:bg-blue-700 text-white font-bold shadow-lg shadow-primary/30 hover-lift transition-all">
+                            Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Info -->
+                <div class="space-y-8" data-aos="fade-left">
+                    <div class="glass-card p-8 rounded-3xl h-full flex flex-col justify-center">
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm text-slate-500">Email Us</h4>
+                                    <a href="mailto:hello@sriaandavarapps.com" class="font-bold hover:text-primary transition-colors">hello@sriaandavarapps.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm text-slate-500">Location</h4>
+                                    <p class="font-bold">Tamil Nadu, India</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-8 border-slate-200 dark:border-slate-700">
+                        
+                        <div>
+                            <h4 class="font-bold mb-4">Connect With Us</h4>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors shadow">
+                                    <i class="fa-brands fa-google-play"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors shadow">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white flex items-center justify-center transition-colors shadow">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Map Placeholder -->
+                        <div class="mt-8 h-40 rounded-2xl bg-slate-200 dark:bg-slate-800 overflow-hidden relative group">
+                            <div class="absolute inset-0 flex items-center justify-center flex-col text-slate-400">
+                                <i class="fa-solid fa-map-location-dot text-3xl mb-2 group-hover:text-primary transition-colors"></i>
+                                <span class="text-sm">View on Google Maps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-2">
+                    <a href="#" class="text-2xl font-bold flex items-center gap-2 mb-6 text-white">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-accent flex items-center justify-center">
+                            <i class="fa-solid fa-code text-sm"></i>
+                        </div>
+                        Sri Aandavar Apps
+                    </a>
+                    <p class="max-w-md mb-6">Building intelligent, high-performance Android applications that elevate your digital experience.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-google-play text-xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#apps" class="hover:text-primary transition-colors">Our Apps</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="privacy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
+                        <li><a href="#faq" class="hover:text-primary transition-colors">Support & FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Sri Aandavar Apps. All rights reserved.</p>
+                <a href="#home" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-colors text-white" aria-label="Back to Top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
